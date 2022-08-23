@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Fetch</title>
+</head>
+<body>
+    <table>
+        <tbody></tbody>
+    </table>
+    <script>
+        fetch('https://randomuser.me/api/?results=5')
+        .then(response => response.json())
+        .then(data => {
+            const tbody = document.querySelector('tbody');
+            for(const result of data.results){
+                const tr = document.createElement('tr')
+                tbody.appendChild(tr)
+                const td = document.createElement('td')
+                td.innerText = result.name.first
+                tr.appendChild(td)
+                const tdrua = document.createElement('td')
+                tdrua.innerText = result.location.street.name
+                tr.appendChild(tdrua)
+            }
+        })
+    </script>
+</body>
+</html>
